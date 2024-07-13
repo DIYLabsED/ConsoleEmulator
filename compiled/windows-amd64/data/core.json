@@ -1,0 +1,15 @@
+ {
+   "version" : "ConsoleEmulator 0.1.0 alpha",
+   "messageFont" : "defaultFont3.ttf",
+   "editorFont" : "defaultFont4.ttf",
+   "creditText" : "A DIY Labs Production",
+   "fontConversionSize" : 100,
+   "gffFile" : "terminal.gff",
+   "messageFile" : "messages.json",
+   "defaultTextR" : 255,
+   "defaultTextG" : 176,
+   "defaultTextB" : 0,
+   "terminalWidth" : 400,
+   "terminalHeight" : 500
+   
+ }

@@ -1,0 +1,6 @@
+bgcol 0,0,0,255
+fillcol 0,0,0,255
+strokecol 255,176,0,255
+strokewidth 2
+roundrect 1,1,598,875,10
+roundrect 1,876,598,23,10
