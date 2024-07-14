@@ -31,6 +31,8 @@ color[] messageColors;
 int[] messageSizes;
 int[] delayBetweenChars;
 
+int startX, startY;
+
 int[] oldTextX;
 int[] oldTextY;
 
@@ -52,11 +54,11 @@ void setup(){
   arrayIndex = 0;
   charIndex = 0;
   
-  textX = 20;
-  textY = 20;
       
   // Load config file, and vars from that config file
   loadConfigFile();
+  textX = startX;
+  textY = startY;
        
 }
 
@@ -106,6 +108,9 @@ void loadConfigFile(){
   
   oldTextX = new int[messageFile.size()];
   oldTextY = new int[messageFile.size()];
+  
+  startX = core.getInt("startX");
+  startY = core.getInt("startY");
   
   delayBetweenChars = new int[messageFile.size()];
   

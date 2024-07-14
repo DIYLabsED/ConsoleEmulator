@@ -10,6 +10,8 @@
    "defaultTextG" : 176,
    "defaultTextB" : 0,
    "terminalWidth" : 400,
-   "terminalHeight" : 500
+   "terminalHeight" : 500,
+   "startX" : 20,
+   "startY" : 20
    
  }
