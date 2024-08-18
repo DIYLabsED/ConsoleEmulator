@@ -1,0 +1,34 @@
+[
+
+{
+	"language" : "English",
+	"creator" : "DIY Labs",
+
+	"UI_BUTTON_BACK" : "Back",
+	"UI_BUTTON_EXIT" : "Quit",
+	"UI_BUTTON_THEMES" : "Themes",
+	"UI_BUTTON_LANGUAGES" : "Language",
+	"UI_BUTTON_EDITOR" : "Editor",
+	"UI_BUTTON_PROJECTS" : "Projects",
+	"UI_BUTTON_DEBUG" : "Debug",
+	"UI_BUTTON_DOCUMENTATION" : "Documentation",
+	"UI_BUTTON_SETTINGS" : "Settings",
+	"UI_SCENE_ILLEGAL" : "Illegal Scene",
+	"UI_SCENE_LOGSAVE" : "Logs saved",
+	"UI_SCENE_THEMES" : "Installed Themes",
+	"UI_SCENE_SETTINGS" : "General Settings",
+	"UI_SCENE_DEBUG" : "Debug",
+	"UI_SCENE_THEMES_SUB1" : "Use arrow keys to choose theme",
+	"UI_SCENE_THEMES_SUB2" : "(Older, incompatible themes are colored like this and not loaded)",
+	"UI_SCENE_THEMES_CREATOR_PRETEXT" : "by: ",
+	"UI_SCENE_LANGUAGES" : "Installed Languages",
+	"UI_SCENE_LANGUAGES_SUB1" : "Use arrow keys to choose language",
+	"UI_SCENE_LANGUAGES_SUB2" : "(Translations may not be 100% accurate)",
+	"UI_SCENE_PROJECT_SELECT" : "Select Project",
+	"UI_SCENE_PROJECT_SELECT_SUB1" : "Use arrow keys to choose project",
+	"UI_SCENE_PROJECT_SELECT_PROJECT_PROPERTIES" : "Properties",
+	"UI_SCENE_LANGUAGES_CREATOR_PRETEXT" : "by: ",
+
+},
+
+]
