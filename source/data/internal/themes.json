@@ -59,11 +59,40 @@
 },
 
 {
-	"themeName" : "Garbage",
+	"themeName" : "Builtin Green",
 	"creator" : "DIY Labs",
 	"version" : 0,
 
 	"fontFile" : "internal/font2.ttf",
+
+	"backgroundColorR" : "30",
+	"backgroundColorG" : "30",
+	"backgroundColorB" : "30",
+
+	"foregroundColorR" : "255",
+	"foregroundColorG" : "255",
+	"foregroundColorB" : "255",
+
+	"highlightColorR" : "0",
+	"highlightColorG" : "255",
+	"highlightColorB" : "51",
+
+	"majorErrorColorR" : 255,
+	"majorErrorColorG" : 0,
+	"majorErrorColorB" : 0,
+
+	"unavailableColorR" : 150,
+	"unavailableColorG" : 150,
+	"unavailableColorB" : 150,
+
+},
+
+{
+	"themeName" : "Garbage",
+	"creator" : "DIY Labs",
+	"version" : 0,
+
+	"fontFile" : "internal/font3.ttf",
 
 	"backgroundColorR" : "255",
 	"backgroundColorG" : "255",

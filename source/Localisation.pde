@@ -66,7 +66,7 @@ void languageSelector(){
     int creatorX = width - marginX; // topright!
     
     float yOffset = initialY + (i * textSize);
-    float selectionYOffset = initialY + (selectedLanguage * textSize);
+    float selectionYOffset = initialY + (selectedLanguage * textSize) - 2;
     
     float selectionYMargin = textDescent() / 3;
     
@@ -89,8 +89,9 @@ void languageSelector(){
     stroke(THEME_HIGHLIGHT_COL);
     strokeWeight(1.5);
     rect(initialX - (marginX/2), selectionYOffset - selectionYMargin, creatorX , textSize - selectionYMargin);
-    
+        
   } 
+
     
 }
 

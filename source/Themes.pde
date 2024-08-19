@@ -64,7 +64,7 @@ void themeSelector(){
     int creatorX = width - marginX; // topright!
     
     float yOffset = initialY + (i * textSize);
-    float selectionYOffset = initialY + (selectedTheme * textSize);
+    float selectionYOffset = initialY + (selectedTheme * textSize) - 2;
     
     float selectionYMargin = textDescent() / 3;
     

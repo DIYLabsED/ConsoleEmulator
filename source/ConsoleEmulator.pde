@@ -43,7 +43,7 @@ void setup(){
   
   loadDataFromSave();
 
-  PImage icon = loadImage("internal/icon.png");
+  PImage icon = loadImage(coreConfig.getString("iconFilepath"));
   surface.setIcon(icon);
   surface.setTitle("ConsoleEmulator " + coreConfig.getString("versionString") + "    |    DIY Labs 2024");
   
@@ -232,6 +232,7 @@ void homePage(){
   homeMenuEditor.handle();
   
   image(consoleEmulatorLogo, 0, 0);
+  tint(THEME_HIGHLIGHT_COL);
   
   fill(THEME_FOREGROUND_COL);
   strokeWeight(0);
