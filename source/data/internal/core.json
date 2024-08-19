@@ -1,7 +1,0 @@
-{
-	"versionString" : "0.2.0-alpha [PRE-RELEASE]",
-	"logoFilepath" : "internal/console-emulator-logo-white.png",
-	"iconFilepath" : "internal/icon.png",
-	"githubRepo" : "github.com/DIYLabsED/ConsoleEmulator"
-
-}
