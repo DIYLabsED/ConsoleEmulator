@@ -10,7 +10,11 @@ final int SCENE_THEME = 1;
 final int SCENE_LANGUAGE = 2;
 final int SCENE_PROJECT_SELECT = 3;
 final int SCENE_SETTINGS = 4;
+final int SCENE_INTRO_PREQUEL = 5;
+final int SCENE_INTRO_TUTORIAL = 6;
 int scene = SCENE_HOME;
+
+boolean showTutorial;
 
 PImage consoleEmulatorLogo;
 
@@ -28,12 +32,14 @@ UIButton settingsMenuBack;
 UIButton languageMenuBack;
 UIButton homeMenuExit;
 UIButton settingsMenuTheme;
+UIButton settingsMenuFactoryReset;
 UIButton settingsMenuLanguage;
 UIButton homeMenuEditor;
 UIButton homeMenuProject;
 UIButton homeMenuSettings;
 UIButton projectMenuBack;
 UIButton homeMenuDocumentation;
+UIButton introMenuNext;
 
 
 void setup(){
@@ -42,7 +48,7 @@ void setup(){
   saveFile = loadJSONObject("internal/save.json");
   
   loadDataFromSave();
-
+  
   PImage icon = loadImage(coreConfig.getString("iconFilepath"));
   surface.setIcon(icon);
   surface.setTitle("ConsoleEmulator " + coreConfig.getString("versionString") + "    |    DIY Labs 2024");
@@ -95,6 +101,14 @@ void draw(){
       settingsPage();
     break;
       
+    case SCENE_INTRO_PREQUEL:
+      introPrequel();
+    break;
+
+    case SCENE_INTRO_TUTORIAL:
+      intro();
+    break;
+      
     default:
       errorPageScene();
     break;
@@ -131,7 +145,7 @@ void keyReleased(){
     
   }
   
-  if(scene == SCENE_LANGUAGE){
+  if(scene == SCENE_LANGUAGE || scene == SCENE_INTRO_PREQUEL){
       
     if(keyCode == UP){
       
@@ -152,20 +166,16 @@ void keyReleased(){
     frameCount = -1;
     
   }
-  
-  if(keyCode == ESC){
-   
-    if(scene == SCENE_THEME){
-     
-      scene = SCENE_HOME;
-      
-    }
-    
-  }
-  
+
   if(key == DELETE){
     
     logDebugInfo();
+    
+  }
+  
+  if(scene == SCENE_INTRO_TUTORIAL){
+   
+    scene = SCENE_HOME;
     
   }
 
@@ -176,25 +186,30 @@ void loadUIElements(){
   int y = 120;
   int inc = 55;
 
-  themeMenuBack          = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
-  languageMenuBack       = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
-  projectMenuBack        = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
-  settingsMenuBack       = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
+  themeMenuBack            = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
+  languageMenuBack         = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
+  projectMenuBack          = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
+  settingsMenuBack         = new UIButton(140, 30, 5, 5, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_BACK"));
 
-  homeMenuEditor         = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_EDITOR"));
+  homeMenuEditor           = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_BACKGROUND_COL, THEME_UNAVAILABLE_COL, THEME_UNAVAILABLE_COL, THEME_UNAVAILABLE_COL, THEME_UNAVAILABLE_COL, localisation.getString("UI_BUTTON_EDITOR"));
   y += inc;
-  homeMenuProject        = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_PROJECTS"));
+  homeMenuProject          = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_PROJECTS"));
   y += inc;
-  homeMenuDocumentation  = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_DOCUMENTATION"));
-  homeMenuSettings       = new UIButton(350, 45, UI_BUTTON_CENTER, 325, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_SETTINGS"));  
-  homeMenuExit           = new UIButton(350, 45, UI_BUTTON_CENTER, height - 80, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_EXIT"));
+  homeMenuDocumentation    = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_DOCUMENTATION"));
+  homeMenuSettings         = new UIButton(350, 45, UI_BUTTON_CENTER, 325, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_SETTINGS"));  
+  homeMenuExit             = new UIButton(350, 45, UI_BUTTON_CENTER, height - 80, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_EXIT"));
   
   y = 100;
   inc = 55;
 
-  settingsMenuTheme      = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_THEMES"));
+  settingsMenuTheme        = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_THEMES"));
   y += inc;
-  settingsMenuLanguage   = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_LANGUAGES"));
+  settingsMenuLanguage     = new UIButton(350, 45, UI_BUTTON_CENTER, y, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_LANGUAGES"));
+
+  settingsMenuFactoryReset = new UIButton(350, 30, UI_BUTTON_CENTER, height - 35, 2, THEME_BACKGROUND_COL, THEME_ERROR_MAJOR_COL, THEME_ERROR_MAJOR_COL, THEME_ERROR_MAJOR_COL, THEME_ERROR_MAJOR_COL, THEME_ERROR_MAJOR_COL, localisation.getString("UI_BUTTON_FACRESET"));
+
+  introMenuNext            = new UIButton(350, 45, UI_BUTTON_CENTER, height - 80, 2, THEME_BACKGROUND_COL, THEME_HIGHLIGHT_COL, THEME_HIGHLIGHT_COL, THEME_FOREGROUND_COL, THEME_FOREGROUND_COL, THEME_BACKGROUND_COL, localisation.getString("UI_BUTTON_NEXT"));
+ 
 
 }
 
@@ -214,7 +229,7 @@ void errorPageScene(){
 void homePage(){
  
   if(homeMenuExit.handle()){
-    super.exit();    
+    safeExit();   
   }
      
   if(homeMenuProject.handle()){
@@ -263,6 +278,12 @@ void settingsPage(){
   if(settingsMenuLanguage.handle()){
     scene = SCENE_LANGUAGE;  
   }
+  
+  if(settingsMenuFactoryReset.handle()){
+   
+    factoryReset();
+    
+  }
 
 }
 
@@ -293,6 +314,11 @@ void loadDataFromSave(){
  
   selectedTheme = saveFile.getInt("theme");  
   selectedLanguage = saveFile.getInt("language");
+  showTutorial = saveFile.getBoolean("showTutorial");
+  
+  if(showTutorial){
+   scene = SCENE_INTRO_PREQUEL; 
+  }
   
 }
 
@@ -302,8 +328,9 @@ void saveDataToSave(){
   
   temp.setInt("theme", selectedTheme);
   temp.setInt("language", selectedLanguage);
+  temp.setBoolean("showTutorial", false);
   
-  saveJSONObject(temp, "data/internal/save.json");
+  saveJSONObject(temp, coreConfig.getString("saveFileFilePath"));
     
 }
 
@@ -318,7 +345,7 @@ void logDebugInfo(){
   // Java vendor name
   // Processor identifier
   
-  String filePath = sketchPath("/logs/syslog.log");
+  String filePath = sketchPath(coreConfig.getString("mainLogFilePathAppend"));
   String[] log = new String[8];
   
   log[0] = "THIS LOG MAY CONTAIN PERSONAL INFORMATION. DO NOT SHARE IT UNLESS YOU TRUST THE RECIPIENT!\n";
@@ -333,5 +360,50 @@ void logDebugInfo(){
   saveStrings(filePath, log);
   
   background(255);
+  
+}
+
+void intro(){
+ 
+  fill(THEME_FOREGROUND_COL);
+  strokeWeight(0);
+      
+  textSize(40);
+  textAlign(CENTER, TOP);
+  text(localisation.getString("UI_SCENE_INTRO"), width/2, 10);
+  
+  textSize(25);
+  text(localisation.getString("UI_SCENE_INTRO_SUB1"), width/2, 120);
+  text(localisation.getString("UI_SCENE_INTRO_SUB2"), width/2, 150);
+  
+  textSize(20);
+  fill(THEME_HIGHLIGHT_COL);
+  text(sketchPath(coreConfig.getString("mainLogFilePathAppend")), width/2, 185);  
+ 
+  fill(THEME_FOREGROUND_COL);
+  textAlign(CENTER, BOTTOM);
+  text(localisation.getString("UI_SCENE_INTRO_SUB3"), width/2, height - 40);
+  text(localisation.getString("UI_SCENE_INTRO_SUB4"), width/2, height - 10);
+  
+}
+
+void safeExit(){
+  
+  saveDataToSave();
+  super.exit();
+  
+}
+
+void factoryReset(){
+ 
+  JSONObject temp = new JSONObject();
+  
+  temp.setInt("theme", 0);
+  temp.setInt("language", 0);
+  temp.setBoolean("showTutorial", true);
+  
+  saveJSONObject(temp, coreConfig.getString("saveFileFilePath"));
+  
+  super.exit();
   
 }

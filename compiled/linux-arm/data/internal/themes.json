@@ -1,7 +1,7 @@
 [
 
 {
-	"themeName" : "Builtin Dark",
+	"themeName" : "Orbitron Dark",
 	"creator" : "DIY Labs",
 	"version" : 0,
 
@@ -30,36 +30,7 @@
 },
 
 {
-	"themeName" : "Builtin Light",
-	"creator" : "DIY Labs",
-	"version" : 0,
-
-	"fontFile" : "internal/font1.ttf",
-
-	"backgroundColorR" : "255",
-	"backgroundColorG" : "255",
-	"backgroundColorB" : "255",
-
-	"foregroundColorR" : "0",
-	"foregroundColorG" : "0",
-	"foregroundColorB" : "0",
-
-	"highlightColorR" : "255",
-	"highlightColorG" : "176",
-	"highlightColorB" : "0",
-
-	"majorErrorColorR" : 255,
-	"majorErrorColorG" : 0,
-	"majorErrorColorB" : 0,
-
-	"unavailableColorR" : 150,
-	"unavailableColorG" : 150,
-	"unavailableColorB" : 150,
-
-},
-
-{
-	"themeName" : "Builtin Green",
+	"themeName" : "Pixelify Sans Green",
 	"creator" : "DIY Labs",
 	"version" : 0,
 
@@ -80,6 +51,35 @@
 	"majorErrorColorR" : 255,
 	"majorErrorColorG" : 0,
 	"majorErrorColorB" : 0,
+
+	"unavailableColorR" : 150,
+	"unavailableColorG" : 150,
+	"unavailableColorB" : 150,
+
+},
+
+{
+	"themeName" : "Orbitron Dark (desaturated)",
+	"creator" : "DIY Labs",
+	"version" : 0,
+
+	"fontFile" : "internal/font1.ttf",
+
+	"backgroundColorR" : "0",
+	"backgroundColorG" : "0",
+	"backgroundColorB" : "0",
+
+	"foregroundColorR" : "255",
+	"foregroundColorG" : "255",
+	"foregroundColorB" : "255",	
+
+	"highlightColorR" : "255",
+	"highlightColorG" : "176",
+	"highlightColorB" : "100",
+
+	"majorErrorColorR" : 255,
+	"majorErrorColorG" : 100,
+	"majorErrorColorB" : 100,
 
 	"unavailableColorR" : 150,
 	"unavailableColorG" : 150,

@@ -29,6 +29,15 @@
 	"UI_SCENE_PROJECT_SELECT_PROJECT_PROPERTIES" : "Properties",
 	"UI_SCENE_LANGUAGES_CREATOR_PRETEXT" : "by: ",
 
+	"UI_SCENE_INTRO" : "Welcome to ConsoleEmulator!",
+	"UI_SCENE_INTRO_SUB1" : "Press [TAB] to reload configs while running",
+	"UI_SCENE_INTRO_SUB2" : "Press [DELETE] to save a log at:",
+	"UI_SCENE_INTRO_SUB3" : "You will not be shown this tutorial again",
+	"UI_SCENE_INTRO_SUB4" : "Press any key to continue",
+
+	"UI_BUTTON_FACRESET" : "!! Factory Reset !!",
+	"UI_BUTTON_NEXT" : "Next",
+
 },
 
 {
@@ -59,6 +68,16 @@
 	"UI_SCENE_PROJECT_SELECT_SUB1" : "Proje seçmek için ok tuşlarını kullanın",
 	"UI_SCENE_PROJECT_SELECT_PROJECT_PROPERTIES" : "Özellikler",
 	"UI_SCENE_LANGUAGES_CREATOR_PRETEXT" : "Tarafından: ",
+
+	"UI_SCENE_INTRO" : "ConsoleEmulator'e Hoş Geldiniz!",
+	"UI_SCENE_INTRO_SUB1" : "Çalışırken yapılandırmaları yenilemek için [TAB]'a basınız.",
+	"UI_SCENE_INTRO_SUB2" : "Burada Günlügü kaydetmek için [DELETE]'e basınız:",
+	"UI_SCENE_INTRO_SUB3" : "Bu ögretim sana yeniden gösterilmeyecektir",
+	"UI_SCENE_INTRO_SUB4" : " Devam etmek için herhangi bir tuşa basınız",
+
+	"UI_BUTTON_FACRESET" : "!! Fabrika ayarlarına sıfırla !!",
+
+	"UI_BUTTON_NEXT" : "önümüzdeki",
 
 },
 
