@@ -1,4 +1,5 @@
 {
-  "theme": 2,
-  "language": 1
+  "showTutorial": true,
+  "theme": 0,
+  "language": 0
 }
