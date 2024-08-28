@@ -1,9 +1,12 @@
 {
-	"versionString" : "0.4.0-alpha-uitest [PRE-RELEASE]",
-	"logoFilepath" : "internal/console-emulator-logo-white.png",
-	"iconFilepath" : "internal/icon.png",
+	"versionString" : "0.5.0-alpha-uitest [PRE-RELEASE]",
+	"logoFilepath" : "data/internal/console-emulator-logo-white.png",
+	"iconFilepath" : "data/internal/icon.png",
 	"githubRepo" : "github.com/DIYLabsED/ConsoleEmulator",
+	"themeFileFilePath" : "internal/themes.json",
+	"locFileFilePath" : "data/internal/localisation.json",
 	"saveFileFilePath" : "data/internal/save.json",
 	"mainLogFilePathAppend" : "logs/syslog.log",
-
+	"reportBugLink" : "https://github.com/DIYLabsED/ConsoleEmulator/issues/new",
+	"documentationLink" : "https://github.com/DIYLabsED/ConsoleEmulator/wiki",
 }
