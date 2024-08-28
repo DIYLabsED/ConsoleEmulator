@@ -2,8 +2,16 @@
 	
 {
 	"name" : "Demo 1",
+	"creator" : "DIY Labs",
 	"renderer" : "renderer1",
 	"projectFile" : "projects/demo1.json",
+},
+
+{
+	"name" : "Demo 2",
+	"creator" : "DIY Labs",
+	"renderer" : "renderer2",
+	"projectFile" : "projects/demo2.json",
 }
 
 ]

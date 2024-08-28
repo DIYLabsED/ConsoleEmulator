@@ -21,7 +21,6 @@ class UIButton{
    
     buttonWidth = w;
     buttonHeight = h;
-    buttonY = y;
     
     if(x == UI_BUTTON_CENTER){
      
@@ -34,6 +33,17 @@ class UIButton{
     
     }
     
+    if(y == UI_BUTTON_CENTER){
+     
+      buttonY = (height/2) - (buttonHeight/2);
+      
+    }
+    else{
+      
+      buttonY = y;
+    
+    }
+    
     buttonRadius = buttonHeight - (buttonHeight/1.3);
     buttonStrokeWeight = weight;
     buttonFillCol = f;
@@ -42,7 +52,7 @@ class UIButton{
     buttonStrokeHighlightCol = sh;
     buttonTextCol = c;
     buttonTextHighlightCol = ch;
-    buttonText = t;
+    buttonText = t;    
     buttonTextSize = buttonHeight - 10;
     
   }
@@ -53,7 +63,12 @@ class UIButton{
            
       if(isMouseOver(buttonX, buttonY, buttonX + buttonWidth, buttonY + buttonHeight) && isXYOver(buttonX, buttonY, buttonX + buttonWidth, buttonY + buttonHeight, mouseReleasedX, mouseReleasedY)){
        
-        fill(buttonFillHighlightCol);
+        if(transparentButtons){
+          fill(0, 0, 0, 0); 
+        }
+        else{
+          fill(buttonFillCol);
+        }
         stroke(buttonStrokeHighlightCol);
         strokeWeight(buttonStrokeWeight);
         rect(buttonX, buttonY, buttonWidth, buttonHeight, buttonRadius);
@@ -68,7 +83,12 @@ class UIButton{
       
     }
     
-    fill(buttonFillCol);
+    if(transparentButtons){
+      fill(0, 0, 0, 0); 
+    }
+    else{
+      fill(buttonFillCol);
+    }
     stroke(buttonStrokeCol);
     strokeWeight(buttonStrokeWeight);
     rect(buttonX, buttonY, buttonWidth, buttonHeight, buttonRadius);
@@ -76,6 +96,7 @@ class UIButton{
     textSize(buttonTextSize);
     fill(buttonTextCol);
     text(buttonText, buttonX + (buttonWidth/2), buttonY + (buttonHeight/2));
+ 
     return false;     
     
     

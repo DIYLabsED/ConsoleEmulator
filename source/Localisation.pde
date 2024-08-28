@@ -1,4 +1,4 @@
-final String LOCALISATION_FILE_FILEPATH = "internal/localisation.json";
+String LOCALISATION_FILE_FILEPATH;
 JSONObject localisation;
 JSONArray languages;
 

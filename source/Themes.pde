@@ -1,10 +1,11 @@
-final String THEME_FILE_FILEPATH = "internal/themes.json";
+String THEME_FILE_FILEPATH;
 final int LATEST_THEME_FILE_VERSION = 0;
 
 JSONArray themes;
 
 color THEME_BACKGROUND_COL, THEME_FOREGROUND_COL, THEME_HIGHLIGHT_COL, THEME_ERROR_MAJOR_COL, THEME_UNAVAILABLE_COL;
 PFont THEME_FONT;
+int textMatrixAlpha;
 
 int selectedTheme = 0;
 
@@ -115,6 +116,8 @@ void loadTheme(int selection){
   THEME_UNAVAILABLE_COL = color(theme.getInt("unavailableColorR"), theme.getInt("unavailableColorG"), theme.getInt("unavailableColorB"));
   THEME_FONT = createFont(theme.getString("fontFile"), 100);
   textFont(THEME_FONT);
+  
+  textMatrixAlpha = theme.getInt("textMatrixAlpha");
 
   loadUIElements(); // Reload UI elements to apply new colors
     
