@@ -1,5 +1,7 @@
 {
+  "transparentButtons": true,
   "showTutorial": true,
-  "theme": 0,
+  "showTextMatrix": true,
+  "theme": 1,
   "language": 0
 }
